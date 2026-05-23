@@ -2,10 +2,23 @@
 #include "stm32f4xx.h"
 #include "led.h"
 
+#define PERIOD 1000
+
 void cpu_delay(void)
 {
 	uint32_t delay = 168*1000*100;
 	for (uint32_t t = 0; t < delay; t++) { ; }
+}
+
+void led_breath(int duty, int time)
+{
+	for (int t = 0; t < time; t++)
+	{
+		led_on(1);
+		for (int i = 0; i < duty; i++);
+		led_off(1);
+		for (int i = duty; i < PERIOD; i++);
+	}
 }
 
 int main(void)
@@ -17,12 +30,14 @@ int main(void)
 		led_all_off();
 	
 		while(1)
-		{
-			for (uint8_t i = 1; i <= 2; i++)
+		{			
+			for (int d = 0; d < PERIOD; d++)
+			{			
+					led_breath(d, 50);
+			}	
+			for (int d = PERIOD; d > 0; d--)
 			{
-				led_on(i);
-				cpu_delay();
-				led_off(i);
+					led_breath(d, 50);
 			}			
 		}
 }
