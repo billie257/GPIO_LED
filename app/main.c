@@ -1,6 +1,4 @@
-#include <stdbool.h>
-#include "stm32f4xx.h"
-#include "led.h"
+#include "board.h"
 
 #define PERIOD 100
 
@@ -10,23 +8,12 @@ void cpu_delay(void)
 	for (uint32_t t = 0; t < delay; t++) { ; }
 }
 
-void led_breath(int duty, int time)
-{
-	for (int t = 0; t < time; t++)
-	{
-		led_on(1);
-		for (int i = 0; i < duty; i++);
-		led_off(1);
-		for (int i = duty; i < PERIOD; i++);
-	}
-}
-
 int main(void)
 {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
+		board_lowlevel_init();
 		
-		led_init();	
-		led_all_off();
+		led_init(led1);
+    led_init(led2);	
 	
 		int led1_duty = 0.2*PERIOD, led1_inc = 1;
 		int led2_duty = 0.8*PERIOD, led2_inc = 1;	
@@ -37,8 +24,8 @@ int main(void)
 				{
 					for (int i = 0; i < PERIOD; i++)
 					{			
-							if (i < led1_duty)  led_on(1); else led_off(1);
-							if (i < led2_duty)  led_on(2); else led_off(2);						
+							if (i < led1_duty)  led_on(led1); else led_off(led1);
+							if (i < led2_duty)  led_on(led2); else led_off(led2);						
 					}			
 				}	
 				led1_duty += led1_inc; 

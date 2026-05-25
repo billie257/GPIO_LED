@@ -4,14 +4,15 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-void led_init(void);
+struct led_desc;
+typedef struct led_desc *led_desc_t;
 
-void led_set(uint8_t idx, bool onoff);
+void led_init(led_desc_t led);
 
-void led_on(uint8_t idx);
+void led_set(led_desc_t led, bool onoff);
 
-void led_off(uint8_t idx);
+void led_on(led_desc_t led);
 
-void led_all_off(void);
+void led_off(led_desc_t led);
 
 #endif /*__LED_H__ */
