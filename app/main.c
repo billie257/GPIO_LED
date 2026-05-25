@@ -1,6 +1,4 @@
-#include <stdbool.h>
-#include "stm32f4xx.h"
-#include "led.h"
+#include "board.h"
 
 void cpu_delay(void)
 {
@@ -10,19 +8,18 @@ void cpu_delay(void)
 
 int main(void)
 {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
+		board_lowlevel_init();
 		
-		led_init();
-	
-		led_all_off();
+		led_init(led1);
+		led_init(led2);
 	
 		while(1)
-		{
-			for (uint8_t i = 1; i <= 2; i++)
-			{
-				led_on(i);
+		{			
+				led_on(led1);
 				cpu_delay();
-				led_off(i);
-			}			
+				led_off(led1);
+			  led_on(led2);
+				cpu_delay();
+				led_off(led2);						
 		}
 }
