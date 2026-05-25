@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER,HSE_VALUE=8000000</Define>
               <Undefine></Undefine>
-              <IncludePath>..\firmware\cmsis\core;..\firmware\cmsis\device;..\firmware\driver\inc</IncludePath>
+              <IncludePath>..\app;..\driver;..\firmware\cmsis\core;..\firmware\cmsis\device;..\firmware\driver\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -389,10 +389,22 @@
               <FileType>1</FileType>
               <FilePath>..\app\main.c</FilePath>
             </File>
+            <File>
+              <FileName>board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>driver</GroupName>
+          <Files>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\driver\led.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>firmware/cmsis</GroupName>
