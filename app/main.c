@@ -1,6 +1,4 @@
-#include <stdbool.h>
-#include "stm32f4xx.h"
-#include "led.h"
+#include "board.h"
 
 #define PERIOD 1000
 
@@ -14,20 +12,21 @@ void led_breath(int duty, int time)
 {
 	for (int t = 0; t < time; t++)
 	{
-		led_on(1);
+		led_on(led1);
+		led_on(led2);
 		for (int i = 0; i < duty; i++);
-		led_off(1);
+		led_off(led1);
+		led_off(led2);
 		for (int i = duty; i < PERIOD; i++);
 	}
 }
 
 int main(void)
 {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
+		board_lowlevel_init();
 		
-		led_init();
-	
-		led_all_off();
+		led_init(led1);
+		led_init(led2);
 	
 		while(1)
 		{			
