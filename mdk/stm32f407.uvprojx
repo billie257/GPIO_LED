@@ -404,6 +404,11 @@
               <FileType>1</FileType>
               <FilePath>..\driver\led.c</FilePath>
             </File>
+            <File>
+              <FileName>driver_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\driver\driver_timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
