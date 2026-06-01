@@ -1,10 +1,5 @@
 #include "board.h"
-
-static void cpu_delay(void)
-{
-	uint32_t delay = 168*1000*100;
-	for (uint32_t t = 0; t < delay; t++);
-}
+#include "driver_timer.h"
 
 int main(void)
 {	  
@@ -15,11 +10,33 @@ int main(void)
 	
 		while(1)
 		{
-			led_on(led1);
-			led_on(led2);
-			cpu_delay();
-			led_off(led1);
-			led_off(led2);
-			cpu_delay();
+			for (int i = 0; i < 3; i++)
+			{
+				led_on(led1);
+				led_on(led2);
+				cpu_delay(200 * 1000);
+				led_off(led1);
+				led_off(led2);
+				cpu_delay(200 * 1000);
+			}
+			for (int i = 0; i < 3; i++)
+			{
+				led_on(led1);
+				led_on(led2);
+				cpu_delay(800 * 1000);
+				led_off(led1);
+				led_off(led2);
+				cpu_delay(800 * 1000);
+			}
+			for (int i = 0; i < 3; i++)
+			{
+				led_on(led1);
+				led_on(led2);
+				cpu_delay(200 * 1000);
+				led_off(led1);
+				led_off(led2);
+				cpu_delay(200 * 1000);
+			}
+			cpu_delay(1000 * 1000);
 		}
 }
