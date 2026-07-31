@@ -5,10 +5,11 @@
 
 struct led_desc
 {
-	GPIO_TypeDef* Port;
-	uint32_t Pin;
-	BitAction OnBit;
-	BitAction OffBit;
+	uint32_t clk;
+	GPIO_TypeDef* port;
+	uint16_t pin;
+	BitAction on_bit;
+	BitAction off_bit;
 };
 
 #endif /*__LED_DESC_H__ */
