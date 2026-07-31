@@ -3,9 +3,7 @@
 
 #include "led.h"
 
-void board_lowlevel_init(void);
-
-extern led_desc_t led1;
-extern led_desc_t led2;
+extern const led_desc_t led1;
+extern const led_desc_t led2;
 
 #endif /* __BOARD_H__ */
